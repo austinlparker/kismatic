@@ -83,7 +83,7 @@ just-integration-test: get-test-deps
 	ginkgo -p -v integration
 
 serial-integration-test: get-test-deps
-	ginkgo -v --focus="Installing with package installation enabled Targeting AWS infrastructure using a 1/1/1/1 layout with CentOS 7" integration
+	ginkgo -v integration
 
 docs/kismatic-cli:
 	mkdir docs/kismatic-cli
