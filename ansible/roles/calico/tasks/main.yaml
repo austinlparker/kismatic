@@ -17,9 +17,9 @@
       owner: "{{ kubernetes_owner }}"
       group: "{{ kubernetes_group }}"
       mode: "{{ network_environment_mode }}"
-  - name: copy ipPool.yaml to remote
+  - name: copy ip-pool.yaml to remote
     template:
-      src: ipPool.yaml.j2
+      src: ip-pool.yaml.j2
       dest: "{{ calico_ippool_path }}"
       owner: "{{ kubernetes_owner }}"
       group: "{{ kubernetes_group }}"

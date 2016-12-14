@@ -69,7 +69,7 @@ docker_certificates_key_path: "{{ docker_install_dir }}/{{ docker_certificates_k
 network_plugin_bin_dir: /opt/cni/bin
 calico_dir: /etc/calico
 # paths
-calico_ippool_path: "{{ calico_dir }}/ipPool.yaml"
+calico_ippool_path: "{{ calico_dir }}/ip-pool.yaml"
 calicoctl_conf_path: "{{ calico_dir }}/calicoctl.cfg"
 #file modes
 calico_executable_mode: 0775
