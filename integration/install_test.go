@@ -214,4 +214,21 @@ var _ = Describe("Happy Path Installation Tests", func() {
 			})
 		})
 	})
+
+	Describe("Using the hosts file modification option", func() {
+		ItOnAWS("should result in a working cluster", func(aws infrastructureProvisioner) {
+			WithInfrastructure(NodeCount{1, 1, 1}, CentOS7, aws, func(nodes provisionedNodes, sshKey string) {
+				installOpts := installOptions{
+					allowPackageInstallation: true,
+					modifyHostsFiles:         true,
+				}
+				By("Setting the hostnames to be different than the actual ones")
+				nodes.etcd[0].Hostname = "etcd01"
+				nodes.master[0].Hostname = "master01"
+				nodes.worker[0].Hostname = "worker01"
+				err := installKismatic(nodes, installOpts, sshKey)
+				Expect(err).ToNot(HaveOccurred())
+			})
+		})
+	})
 })

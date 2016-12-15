@@ -35,6 +35,7 @@ type installOptions struct {
 	dockerRegistryIP            string
 	dockerRegistryPort          int
 	dockerRegistryCAPath        string
+	modifyHostsFiles            bool
 }
 
 func installKismaticMini(node NodeDeets, sshKey string) error {
@@ -103,6 +104,7 @@ func installKismatic(nodes provisionedNodes, installOpts installOptions, sshKey 
 		DockerRegistryCAPath:         installOpts.dockerRegistryCAPath,
 		DockerRegistryIP:             installOpts.dockerRegistryIP,
 		DockerRegistryPort:           installOpts.dockerRegistryPort,
+		ModifyHostsFiles:             installOpts.modifyHostsFiles,
 	}
 
 	f, err := os.Create("kismatic-testing.yaml")
@@ -119,7 +121,6 @@ func installKismatic(nodes provisionedNodes, installOpts installOptions, sshKey 
 	cmd.Stderr = os.Stderr
 
 	return cmd.Run()
-
 }
 
 func verifyMasterNodeFailure(nodes provisionedNodes, provisioner infrastructureProvisioner, sshKey string) error {
